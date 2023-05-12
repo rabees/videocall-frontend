@@ -22,7 +22,7 @@ const Compiler = ({ code, codeChannel, output, setOutput, outputChannel, screenS
         console.log("Trying to send testcode to backend...", language);
         try {
             axios
-                .post('http://localhost:8000/api/compile', { codeToServer, language })
+                .post('https://master--warm-torte-8f15ef.netlify.app/api/compile', { codeToServer, language })
                 .then((res) => {
                     if (res.data.error) {
                         setOutput(res.data.error)
