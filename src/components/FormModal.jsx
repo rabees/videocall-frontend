@@ -128,7 +128,7 @@ const FormModal = ({
               //   cSharp: false,
             });
             setOpenModal(false);
-            setWelcomeWords('Welcome to Devbud!');
+            setWelcomeWords('Welcome to Study Buddy!');
             setOpenSuccessModal(true);
           })
           .catch((err) => {

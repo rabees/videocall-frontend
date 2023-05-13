@@ -17,7 +17,7 @@ const AboutUs = () => {
           Meet the Team
         </h2>
         <p className='text-lg md:text-2xl py-8 text-gray-600 text-center'>
-          We are a team of self-taught developers. Our goal with DEVBUD. is to
+          We are a team of self-taught developers. Our goal with Study Buddy. is to
           create a space where aspiring and beginner developers can network and
           work with experienced developers to improve their coding skills.
         </p>

@@ -109,7 +109,7 @@ const Tabs = () => {
                     Network with other Developers
                   </h1>
                   <p className=''>
-                    New to coding? DEVBUD's social platform allows users to
+                    New to coding? Study Buddy's social platform allows users to
                     network with each other and find like-minded developers to
                     collaborate with.
                   </p>
@@ -136,7 +136,7 @@ const Tabs = () => {
                   </p>
                   <br />
                   <p>
-                    DEVBUD comes with a built-in IDE where you and your
+                    Study Buddy comes with a built-in IDE where you and your
                     colleagues can work on projects or challenges together.
                     Simply create your own room and invite others!
                   </p>

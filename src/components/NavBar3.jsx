@@ -22,7 +22,7 @@ export const NavBar3 = ({
     <>
       <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 bg-[#F0F0F0] shadow-md sticky top-0 z-50'>
         <Link className='text-3xl font-bold mr-4 sm:text-4xl' to='/'>
-          DEVBUD.
+          Study Buddy.
         </Link>
         {!loginToken && (
           <ul className='hidden md:flex'>
@@ -79,7 +79,7 @@ export const NavBar3 = ({
         >
           <Link to='/'>
             <h2 className='text-3xl font-bold mr-4 sm:text-4xl m-4 mb-2'>
-              DEVBUD.
+              Study Buddy.
             </h2>
           </Link>
           {loginToken && (

@@ -10,7 +10,7 @@ const Features = () => {
           All-In-One Platform
         </h2>
         <p className='text-lg md:text-2xl py-8 text-gray-600 text-center'>
-          DEVBUD. is an All-In-One platform that allows instructors and students
+          Study Buddy. is an All-In-One platform that allows instructors and students
           to maximize their learning effort and use their time more efficiently.
           Below is a list of all the features that users have access to.
         </p>
