@@ -87,7 +87,7 @@ export default function VideoControl(props) {
     }
 
     const leaveChannel = async () => {
-        navigate('/')
+        navigate('/feedback')
         await rtcClient.leave();
         rtcClient.removeAllListeners();
         tracks[0].close();

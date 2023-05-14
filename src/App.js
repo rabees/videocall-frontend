@@ -10,6 +10,8 @@ import LandingPage from './components/landingPage';
 import Main from './views/Main';
 // import FindDev from './views/FindDev';
 import NotFound from './components/NotFound';
+import Rating from './components/rating/Rating';
+import ThankYou from './components/rating/ThankYou';
 
 function App() {
   //JOIN VIDEO CHAT ROOM 
@@ -20,6 +22,15 @@ function App() {
   const [invitationLink, setinvitationLink] = useState('')
   const navigate = useNavigate();
 
+  const [isSubmited,setIsSumbited]=useState(false);
+  const [item,setItems]=useState();
+  const changeStateSubmited=()=>{
+    setIsSumbited(true);
+  }
+  function changeItem(m){
+    setItems(m);
+
+  }
   const createRoom = (e) => {
     e.preventDefault();
     const hasSpaces = Boolean(userName.indexOf(' '))
@@ -54,6 +65,17 @@ function App() {
         <Route path="/" element={
           !joined && <LandingPage createRoom={createRoom} userName={userName} setUserName={setUserName} roomName={roomName} setRoomName={setRoomName} joinRoom={joinRoom} invitationLink={invitationLink} setinvitationLink={setinvitationLink} />
         } />
+        <Route path='/feedback' element={!isSubmited && <Rating changeStateSubmited={changeStateSubmited} changeItem={changeItem} /> } 
+        />      
+      
+      {isSubmited && (
+        <>
+          <Route path="/thankyou" element={<ThankYou item={item} />} />
+          {setTimeout(() => navigate("/"), 3000)}
+        </>
+      )}     
+        
+
         <Route path="/room/:ROOMID" element={<Room joined={joined} setJoined={setJoined} userID={userID} userName={userName} roomName={roomName} setUserName={setUserName} setRoomName={setRoomName} setinvitationLink={setinvitationLink}/>} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
