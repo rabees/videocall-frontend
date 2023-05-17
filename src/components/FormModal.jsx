@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import DevForm from './DevForm';
-import SignupForm from './SignupForm';
-import { AiOutlineClose } from 'react-icons/ai';
-import { useMultistepForm } from './UseMultistepForm';
-import { storage } from '../firebase';
-import { ref, uploadBytes } from "firebase/storage"
-import uuid from 'react-uuid';
+import React, { useState } from "react";
+import axios from "axios";
+import DevForm from "./DevForm";
+import SignupForm from "./SignupForm";
+import { AiOutlineClose } from "react-icons/ai";
+import { useMultistepForm } from "./UseMultistepForm";
+import { storage } from "../firebase";
+import { ref, uploadBytes } from "firebase/storage";
+import uuid from "react-uuid";
 
 const INITIAL_DATA = {
-  email: '',
-  password: '',
-  firstName: '',
-  lastName: '',
-  profilePic: '',
-  education: '',
-  yearsOfExp: '',
-  bio: '',
+  email: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  profilePic: "",
+  education: "",
+  yearsOfExp: "",
+  bio: "",
   javaScript: false,
   python: false,
   java: false,
@@ -31,17 +31,16 @@ const FormModal = ({
   setOpenSuccessModal,
   setWelcomeWords,
   uploadingNotify,
-  completeNotify
+  completeNotify,
 }) => {
   const [data, setData] = useState(INITIAL_DATA);
-  const [confirmPass, setConfirmPass] = useState('');
-  const [formValid, setFormValid] = useState(true)
-  const [imgFile, setImgFile] = useState("")
-  const [imgFirebaseName, setImgFirebaseName] = useState(uuid())
+  const [confirmPass, setConfirmPass] = useState("");
+  const [formValid, setFormValid] = useState(true);
+  const [imgFile, setImgFile] = useState("");
+  const [imgFirebaseName, setImgFirebaseName] = useState(uuid());
 
   //   This fucntion will help us update the variables form the inputs, like setState
   function updateFields(fields) {
-
     setData((prev) => {
       return { ...prev, ...fields };
     });
@@ -65,23 +64,28 @@ const FormModal = ({
       setConfirmPass={setConfirmPass}
       setFormValid={setFormValid}
     />,
-    <DevForm {...data} updateFields={updateFields} imgFile={imgFile} setImgFile={setImgFile} imgFirebaseName={imgFirebaseName}/>,
+    <DevForm
+      {...data}
+      updateFields={updateFields}
+      imgFile={imgFile}
+      setImgFile={setImgFile}
+      imgFirebaseName={imgFirebaseName}
+    />,
   ]);
 
   const uploadImage = () => {
-    if(imgFile == null) return
+    if (imgFile == null) return;
 
     // Make ref to firebase
     const imageRef = ref(storage, `user-profile-pic/${imgFirebaseName}`);
     uploadingNotify();
     //Upload img to firebase
-    uploadBytes(imageRef ,imgFile).then(() => {
-      console.log("Image uploaded to firebase!")
+    uploadBytes(imageRef, imgFile).then(() => {
+      console.log("Image uploaded to firebase!");
       setLoaded(!loaded);
       completeNotify();
-    })
-
-  }
+    });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -89,46 +93,49 @@ const FormModal = ({
     if (!formValid) return stay();
     if (!isLastStep) return next();
 
-    uploadImage()
+    uploadImage();
 
-    console.log("data to submit>>>>>>>>>>", data)
+    console.log("data to submit>>>>>>>>>>", data);
 
     axios
-      .post('http://localhost:8000/api/devs', data)
+      .post("https://studybuddyvideocall.herokuapp.com/api/devs", data)
       .then((res) => {
-        console.log('post response here>>>>>>>>>>>', res.data);
-        if(res.data.error){
+        console.log("post response here>>>>>>>>>>>", res.data);
+        if (res.data.error) {
           setOpenModal(false);
-          return alert("Something went wrong, fail to register!")
+          return alert("Something went wrong, fail to register!");
         }
         const loginData = {
           email: data.email,
           password: data.password,
         };
         axios
-          .post('http://localhost:8000/api/login', loginData)
+          .post(
+            "https://studybuddyvideocall.herokuapp.com/api/login",
+            loginData
+          )
           .then((res) => {
-            localStorage.setItem('jwt', res.data.token);
-            localStorage.setItem('userId', res.data.userId);
-            setLoginToken(localStorage.getItem('jwt'));
-            setConfirmPass('');
+            localStorage.setItem("jwt", res.data.token);
+            localStorage.setItem("userId", res.data.userId);
+            setLoginToken(localStorage.getItem("jwt"));
+            setConfirmPass("");
             setCurrentStepIndex(0);
             updateFields({
-              email: '',
-              password: '',
-              firstName: '',
-              lastName: '',
-              profilePic: '',
-              education: '',
-              yearsOfExp: '',
-              bio: '',
+              email: "",
+              password: "",
+              firstName: "",
+              lastName: "",
+              profilePic: "",
+              education: "",
+              yearsOfExp: "",
+              bio: "",
               javaScript: false,
               python: false,
               java: false,
               //   cSharp: false,
             });
             setOpenModal(false);
-            setWelcomeWords('Welcome to Study Buddy!');
+            setWelcomeWords("Welcome to Study Buddy!");
             setOpenSuccessModal(true);
           })
           .catch((err) => {
@@ -145,38 +152,38 @@ const FormModal = ({
   return (
     <div
       // onClick={() => setOpenModal(false)}
-      className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl'
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50 shadow-xl"
     >
       <div
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className=' w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-1 sm:p-4 my-4 rounded-lg bg-white'
+        className=" w-full md:w-3/4 lg:w-1/3 shadow-xl flex flex-col p-1 sm:p-4 my-4 rounded-lg bg-white"
       >
         <form onSubmit={onSubmit}>
           {/* This is the page number and close button  */}
-          <div className='flex justify-between'>
-            <div className='font-medium text-gray-400'>
+          <div className="flex justify-between">
+            <div className="font-medium text-gray-400">
               Step {currentStepIndex + 1} of {steps.length}
             </div>
-            <div className='font-medium text-2xl cursor-pointer'>
+            <div className="font-medium text-2xl cursor-pointer">
               <AiOutlineClose
                 onClick={() => {
                   updateFields({
-                    email: '',
-                    password: '',
-                    firstName: '',
-                    lastName: '',
-                    profilePic: '',
-                    education: '',
-                    yearsOfExp: '',
-                    bio: '',
+                    email: "",
+                    password: "",
+                    firstName: "",
+                    lastName: "",
+                    profilePic: "",
+                    education: "",
+                    yearsOfExp: "",
+                    bio: "",
                     javaScript: false,
                     python: false,
                     java: false,
                     // cSharp: false,
                   });
-                  setConfirmPass('');
+                  setConfirmPass("");
                   setCurrentStepIndex(0);
                   setOpenModal(false);
                 }}
@@ -188,12 +195,12 @@ const FormModal = ({
           {/* <hr className='mt-6' /> */}
 
           {/* These are the buttons */}
-          <div className='flex p-4 align-middle justify-center gap-10'>
+          <div className="flex p-4 align-middle justify-center gap-10">
             {!isLastStep && (
               <button
-                type='submit'
+                type="submit"
                 // onClick={next}
-                className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black'
+                className="rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black"
               >
                 Next
               </button>
@@ -201,15 +208,15 @@ const FormModal = ({
 
             {!isFirstStep && (
               <button
-                type='submit'
+                type="submit"
                 onClick={back}
-                className='rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black'
+                className="rounded-md px-8 py-2 text-black border border-black transparent hover:bg-black hover:text-white hover:border-black"
               >
                 Back
               </button>
             )}
             {!isFirstStep && (
-              <button className='rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black'>
+              <button className="rounded-md px-8 py-2 text-white border bg-black hover:bg-transparent hover:text-black hover:border-black">
                 Submit
               </button>
             )}

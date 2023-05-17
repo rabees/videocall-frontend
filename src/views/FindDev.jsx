@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import DevList from '../components/DevList';
-import { NavBar3 } from '../components/NavBar3';
-import FormModal from '../components/FormModal';
-import LoginModal from '../components/LoginModal';
-import EditProfileModal from '../components/EditProfileModal';
-import SuccessModal from '../components/SuccessModal';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DevList from "../components/DevList";
+import { NavBar3 } from "../components/NavBar3";
+import FormModal from "../components/FormModal";
+import LoginModal from "../components/LoginModal";
+import EditProfileModal from "../components/EditProfileModal";
+import SuccessModal from "../components/SuccessModal";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FindDev = () => {
   const [devs, setDevs] = useState([]);
@@ -18,37 +17,35 @@ const FindDev = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
-  const [openSuccessModal, setOpenSuccessModal] = useState(false)
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const [loginToken, setLoginToken] = useState("");
   const [welcomeWords, setWelcomeWords] = useState("");
 
-
   const showAllDevs = () => {
     axios
-      .get('http://localhost:8000/api/devs')
+      .get("https://studybuddyvideocall.herokuapp.com/api/devs")
       .then((res) => {
         setDevs(res.data);
         setLoaded(!loaded);
         console.log("all devs here", res.data);
       })
       .catch((err) => console.error(err));
-  }
+  };
 
   useEffect(() => {
-    setLoginToken(localStorage.getItem('jwt'));
+    setLoginToken(localStorage.getItem("jwt"));
 
     axios
-    .get('http://localhost:8000/api/devs')
-    .then((res) => {
-      setDevs(res.data);
-      console.log("all devs here", res.data);
-    })
-    .catch((err) => console.error(err));
-
+      .get("https://studybuddyvideocall.herokuapp.com/api/devs")
+      .then((res) => {
+        setDevs(res.data);
+        console.log("all devs here", res.data);
+      })
+      .catch((err) => console.error(err));
   }, [loaded, openLoginModal, openEditProfileModal]);
 
   const uploadingNotify = () => {
-    toast('Uploading picture...', {
+    toast("Uploading picture...", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -58,10 +55,10 @@ const FindDev = () => {
       progress: undefined,
       theme: "light",
     });
-  }
+  };
 
   const completeNotify = () => {
-    toast.success('Uploaded!', {
+    toast.success("Uploaded!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -71,20 +68,20 @@ const FindDev = () => {
       progress: undefined,
       theme: "light",
     });
-  }
-
+  };
 
   const findDevsByLanguage = (language) => {
     axios
-      .get(`http://localhost:8000/api/devs/filter/${language}`)
+      .get(
+        `https://studybuddyvideocall.herokuapp.com/api/devs/filter/${language}`
+      )
       .then((res) => {
         setDevs(res.data);
-        setLoadImg(!loadImg)
+        setLoadImg(!loadImg);
         console.log(`all devs know ${language} here`, res.data);
       })
       .catch((err) => console.error(err));
-  }
-
+  };
 
   return (
     <div>
@@ -100,7 +97,13 @@ const FindDev = () => {
         openEditProfileModal={openEditProfileModal}
         setOpenEditProfileModal={setOpenEditProfileModal}
       />
-      <DevList devs={devs} loaded={loaded} findDevsByLanguage={findDevsByLanguage} showAllDevs={showAllDevs} loadImg={loadImg}/>
+      <DevList
+        devs={devs}
+        loaded={loaded}
+        findDevsByLanguage={findDevsByLanguage}
+        showAllDevs={showAllDevs}
+        loadImg={loadImg}
+      />
       <FormModal
         open={openModal}
         setOpenModal={setOpenModal}
@@ -133,12 +136,13 @@ const FindDev = () => {
         setLoaded={setLoaded}
         loaded={loaded}
       />
-      {openSuccessModal &&
+      {openSuccessModal && (
         <SuccessModal
           openSuccessModal={openSuccessModal}
           setOpenSuccessModal={setOpenSuccessModal}
           welcomeWords={welcomeWords}
-        />}
+        />
+      )}
       <ToastContainer
         position="top-center"
         autoClose={5000}
