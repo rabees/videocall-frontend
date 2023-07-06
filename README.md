@@ -26,8 +26,30 @@ Study Buddy - Video Call is built using the following technologies:
 - **UI Framework**: Bootstrap
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
-- **Deployment**: Netlify, Heroku
+- **Deployment**: Netlify
 
+## Screenshots
+
+Here are some screenshots showcasing the Study Buddy - Video Call:
+
+1. **Create Room**: ![Create Room](screenshots/create-room.png)
+   *Users can create a room to initiate a video call.*
+
+2. **Join Room**: ![Join Room](screenshots/join-room.png)
+   *Users can join a room by entering an invitational code.*
+
+3. **Homepage**: ![Homepage](screenshots/homepage.png)
+   *The homepage of the Study Buddy - Video Call application.*
+
+4. **Built-in IDE**: ![Built-in IDE](screenshots/builtin-ide.png)
+   *A built-in IDE allows participants to collaborate on projects.*
+
+5. **Screen Sharing**: ![Screen Sharing](screenshots/screen-sharing.png)
+   *Participants can share their screens during video calls.*
+
+6. **Dark Mode**: ![Dark Mode](screenshots/dark-mode.png)
+   *Study Buddy - Video Call supports a dark mode theme.*
+   
 ## Contributing
 
 If you would like to contribute to Study Buddy - Video Call, follow these steps:
@@ -40,10 +62,6 @@ If you would like to contribute to Study Buddy - Video Call, follow these steps:
 6. Submit a pull request to the main repository.
 
 Please ensure that your code follows the existing code style and conventions. Also, make sure to include appropriate documentation and tests for any new features or changes.
-
-## License
-
-Study Buddy - Video Call is released under the [MIT License](LICENSE).
 
 ## Contact
 
