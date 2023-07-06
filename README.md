@@ -1,8 +1,8 @@
-# Video Call
+# Video Call Application
 
 Video Call is a web application that allows users to have video calls for studying purposes. This application provides a convenient platform for students to connect with their peers, collaborate on projects, and study together remotely.
 
-The backend repository for Video Call can be found [here](https://github.com/rabees/videocall-backend).
+The backend repository for Video Call project can be found [here](https://github.com/rabees/videocall-backend).
 
 ## Features
 
@@ -14,14 +14,14 @@ The backend repository for Video Call can be found [here](https://github.com/rab
 
 To get started with Video Call, follow these steps:
 
-1. Visit the application at [https://studybuddy-videocall.netlify.app/](https://studybuddy-videocall.netlify.app/).
+1. Visit the application at [https://videocall-app-project.netlify.app/](https://videocall-app-project.netlify.app/).
 2. Create a room or Join one with an invitational code.
 3. Once created or joined, you can participate in video calls with other participants.
 4. During a video call, you can utilize features such as screen sharing and chat.
 
 ## Technologies Used
 
-Study Buddy - Video Call is built using the following technologies:
+Video Call project is built using the following technologies:
 
 - **Front-end**: HTML, CSS, JavaScript
 - **Video Call**: WebRTC, PeerJS
@@ -32,7 +32,7 @@ Study Buddy - Video Call is built using the following technologies:
 
 ## Screenshots
 
-Here are some screenshots showcasing the Study Buddy - Video Call:
+Here are some screenshots showcasing the Video Call project:
 
 1. **Create Room**: ![Create Room](screenshots/create-room.png)
    _Users can create a room to initiate a video call._
@@ -41,7 +41,7 @@ Here are some screenshots showcasing the Study Buddy - Video Call:
    _Users can join a room by entering an invitational code._
 
 3. **Homepage**: ![Homepage](screenshots/homepage.png)
-   _The homepage of the Study Buddy - Video Call application._
+   _The homepage of the Video Call application._
 
 4. **Built-in IDE**: ![Built-in IDE](screenshots/builtin-ide.png)
    _A built-in IDE allows participants to collaborate on projects._
@@ -50,4 +50,4 @@ Here are some screenshots showcasing the Study Buddy - Video Call:
    _Participants can share their screens during video calls._
 
 6. **Dark Mode**: ![Dark Mode](screenshots/dark-mode.png)
-   _Study Buddy - Video Call supports a dark mode theme._
+   _Video Call project supports a dark mode theme._
